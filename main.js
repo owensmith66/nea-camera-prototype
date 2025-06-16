@@ -50,3 +50,5 @@ function animate() {
     renderer.render(scene, camera.getCameraObject());
     requestAnimationFrame(animate);
 }
+
+animate()
