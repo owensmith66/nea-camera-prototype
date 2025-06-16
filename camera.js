@@ -24,7 +24,7 @@ export class Camera {
         this.__renderer.rotation.setFromVector3(cameraRotation)
     }
 
-    __moveCamera(keysDown) {
+    moveCamera(keysDown) {
         movementDirection = new Vector3(0,0,0)
 
         directions = {
@@ -38,7 +38,7 @@ export class Camera {
 
         for (key in directions) {
             if (keysDown[key]) {
-                movementDirection = movementDirrection + directions[key]
+                movementDirection = movementDirection + directions[key]
             }
         }
 		     
@@ -46,5 +46,17 @@ export class Camera {
 
         this.__setCameraPosition(newPosition)
 
+    }
+
+    rotateCamera(mouseDelta) {
+        rotationDelta = new Vector3(
+            - (mouseDelta.y),
+            mouseDelta.x,
+            0
+        )
+
+        newOrientation = this.__cameraOrientation + rotationDelta
+
+        this.__setCameraOrientation(newOrientation)
     }
 }
