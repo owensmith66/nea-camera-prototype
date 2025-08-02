@@ -31,10 +31,10 @@ export class Camera {
 // Public method to move the camera
     moveCamera(keysDown) {
 	    // Default Vector3 with 0 in all directions - if no buttons are pressed, no movement should happen
-        movementDirection = new Vector3(0,0,0)
+        let movementDirection = new Vector3(0,0,0)
 
 	    // Defines all the directions which each key should cause the camera to move in
-        directions = {
+        let directions = {
 	        W: new Vector3(0,0,1),
 	        S: new Vector3(0,0,-1),
 	        A: new Vector3(-1,0,0),
@@ -44,14 +44,14 @@ export class Camera {
         }
 
 	    // Loop through all keys in the dictionary - if there is a key present in both this and keysDown, add the corresponding Vector3 onto the movementDirection
-        for (key in directions) {
+        for (let key in directions) {
             if (keysDown[key]) {
                 movementDirection = movementDirection + directions[key]
             }
         }
 
 	    // Add this new direction to where the camera already was
-        newPosition = this.__cameraPosition + movementDirection
+        let newPosition = this.__cameraPosition + movementDirection
 
 	    // Call the private method to update position
         this.__setCameraPosition(newPosition)
@@ -60,7 +60,7 @@ export class Camera {
 
 // Public method to rotate the camera
     rotateCamera(mouseDelta) {
-        rotationDelta = new Vector3(
+        let rotationDelta = new Vector3(
             - (mouseDelta.y), // Moving the mouse along the screen's x-axis should change the y-orientation (which acts in the plane perpendicular to the y axis)
             mouseDelta.x, // Same applies for x-axis
             0 // We don't want any z-rotation as this could cause the camera to flip upside down
